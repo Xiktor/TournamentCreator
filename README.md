@@ -1,4 +1,5 @@
-Readme w wersji pdf: [README.pdf](https://github.com/Xiktor/TournamentCreator/files/11833316/README.pdf)
+Readme w wersji pdf: [README.pdf](https://github.com/Xiktor/TournamentCreator/files/11833655/README.pdf)
+
 
 # Cel projektu
 Wykorzystując jeden z dostępnych framework'ów opartych na ORM (i / lub architekturze REST) napisz aplikację pozwalającą rozgrywać turnieje w systemie pucharowym.
@@ -31,7 +32,7 @@ Wymagania pozafunkcjonalne:
 •	Administrator może wszystko. W tym dodać nowe konto administratora
 
 # Stack technologiczny
-Aplikacja jest napisana w języku Python z użyciem freamworka Django, w oparciu o architekturę MVT (Model-View-Template). Zastosowano plikową bazę danych SQLite.
+Aplikacja jest napisana w języku Python z użyciem frameworka Django, w oparciu o architekturę MVT (Model-View-Template). Zastosowano plikową bazę danych SQLite.
 Django dzięki wbudowanym modułom zapewnia:
 
 •	gotowy model użytkownika oraz widoki uwierzytelniania(django.contrib.admin)
