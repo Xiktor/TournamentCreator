@@ -1,0 +1,11 @@
+
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    id {{ rounds.id }} <br>
+    stoły: {% for arena in rounds.arena_set.all %}
+        {{ arena.arena_number }},
+    {% endfor %}<br>
+    runda nr: {{ rounds.round_number }}<br>
+    turniej: {{ rounds.tournament }}<br>
+{% endblock %}

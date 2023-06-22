@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Strona domowa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Moi Gracze</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'create_players' %}">Dodaj gracza</a>
+                    <a class="dropdown-item" href="{% url 'my_players_list' %}">Lista graczy</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Moje turneje</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'create_tournaments' %}">Stwórz turniej</a>
+                    <a class="nav-link dropdown-toggle dropdown-item sub_menu" href="#" data-toggle="dropdown">Lista</a>
+                    <div class="dropdown-menu ml-4">
+                        <a class="dropdown-item" href="{% url 'tournaments_list' value='planned' %}">Zaplanowane</a>
+                        <a class="dropdown-item" href="{% url 'tournaments_list' value='in_progress' %}">W trakcie</a>
+                        <a class="dropdown-item" href="{% url 'tournaments_list' value='finished' %}">Zakończone</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Admin</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'all_players_list' %}">Wszyscy gracze</a>
+                    <a class="dropdown-item" href="{% url 'tournaments_list' value='all' %}">Wszystkie turnieje</a>
+                    <a class="dropdown-item" href="{% url 'create_admin' %}">Dodaj nowego admina</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Anonim</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'all_tournaments_in_progress' %}">Trwające turnieje</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Witaj: <b>{{user.username}}</b> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'logout' %}">Wyloguj się <span class="sr-only">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'login' %}">Zaloguj się<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'register' %}">Załóż konto<span class="sr-only">(current)</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,249 @@
+div.main_body {
+    width: 95%;
+    margin: auto;
+}
+
+footer.footer_style {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #343a40 !important
+}
+
+.max-w-250 {
+    max-width: 250px;
+}
+
+.arena {
+    min-height: 90px;
+    min-width: 180px;
+    margin-bottom: 10px;
+}
+.winner {
+    background: #fad293;
+    padding-left: 10px;
+    height: 50% !important;
+}
+.losser {
+    padding-left: 10px;
+    background: darkslategrey;
+    height: 50% !important;
+}
+.no_result {
+    height: 50% !important;
+}
+
+.empty-arena {
+    min-height: 90px;
+    min-width: 180px;
+}
+
+.round-title{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#player-list {
+  all: revert;
+    padding-left: 0;
+    overflow-y:scroll;
+    max-height: 210px;
+    max-width: 300px;
+    margin: 0px;
+}
+
+#player-list label {
+    display: flex;
+    margin: 0;
+    color: black;
+    font-weight: 400;
+}
+
+#player-list .form-control {
+    width: 12%;
+    height: auto;
+    margin-right: 5%;
+}
+
+.main-card label{
+    color: white;
+    font-weight: 500;
+}
+
+.list-background {
+    background: #daf2ee;
+}
+.txt-bold-white{
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.pt-22 {
+    padding-top: 22px;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #7abecc !important;
+}
+.user_card, .main-card {
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #74cfbf;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.main-card {
+    width: 70%;
+}
+
+#player_create_view .main-card{
+    width: 50%;
+}
+
+.form_container {
+    margin-top: 10px;
+}
+
+#form-title{
+    color: #fff;
+}
+.login_btn {
+    width: 100%;
+    background: #33ccff !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_btn {
+    width: 100%;
+    background: #33ccff !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_btn:hover {
+    box-shadow: none !important;
+    outline: 0px !important;
+    background: #008fcc !important;
+}
+.filter_btn{
+    width: 100px;
+    background: #33ccff !important;
+    color: white !important;
+}
+.start_btn {
+    width: 100px;
+    background: #f7ba5b !important;
+    color: white !important;
+}
+.start_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.start_btn:hover {
+    box-shadow: none !important;
+    outline: 0px !important;
+    background: #ff516c !important;
+}
+.edit_btn {
+    width: 100px;
+    background: #33ccff !important;
+    color: white !important;
+}
+.edit_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.edit_btn:hover {
+    box-shadow: none !important;
+    outline: 0px !important;
+    background: #ff516c !important;
+}
+.result_btn{
+    max-width: 40px;
+    background: #33ccff !important;
+    color: white !important;
+}
+.result_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.result_btn:hover {
+    box-shadow: none !important;
+    outline: 0px !important;
+    background: #ff516c !important;
+}
+.delete_btn {
+    width: 100px;
+    background: #ff516c !important;
+    color: white !important;
+}
+.delete_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.delete_btn:hover {
+    box-shadow: none !important;
+    outline: 0px !important;
+    background: #c7001f !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #f7ba5b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #f7ba5b ;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.sub_menu {
+    color: #212529!important;
+    padding: 0.25rem 1.5rem !important;
+}
+
+.input-date-min-width {
+    min-width: 150px !important;
+}
+
+.filter-border {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 5px;
+}
+.enter_result select{
+    min-width: 150px !important;
+}

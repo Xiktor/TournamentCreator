@@ -1,0 +1,38 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <div class=" container h-100" id="player_create_view">
+		<div class="d-flex justify-content-center h-100">
+			<div class="main-card mt-5">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title" class="mt-2">Dodaj gracza</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container mb-4">
+					<form method="POST">
+                    {% csrf_token %}
+                    {{ form.name.label_tag }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{ form.name }}
+                    </div>
+                    <div class="d-flex justify-content-center mt-4 login_container">
+                        <input class="btn login_btn" type="submit" value="Dodaj gracza">
+                    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    	<script>
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Nazwa';
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+
+{% endblock %}

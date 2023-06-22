@@ -1,0 +1,31 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <h3 class="display-4">arenas</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>runda</th>
+                <th>turniej</th>
+                <th>p1</th>
+                <th>p2</th>
+                <th>nr stołu</th>
+                <th>name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in arenas %}
+                <tr>
+                     <td>{{ a.id }}</td>
+                      <td>{{ a.round.round_number }}</td>
+                      <td>{{ a.round.tournament }} </td>
+                      <td>{{ a.player1 }} </td>
+                      <td>{{ a.player2 }} </td>
+                      <td>{{ a.arena_number }} </td>
+                      <td>{{ a }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <div class=" container h-100" id="player_list_view">
+		<div class="d-flex justify-content-center h-100">
+			<div class="main-card mt-5">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title" class="mt-2">{{ title }}</h3>
+				</div>
+                {% if period_time %}
+                    <div class="d-flex justify-content-center">
+                        <h5 id="form-title" class="mt-2 mb-0">{{ period_time }}</h5>
+				    </div>
+                {% endif %}
+				<div class="d-flex justify-content-center form_container mb-4">
+                    <ul class="container list-group m-4">
+                    {% if tournaments.count > 0 %}
+                        <div class="row">
+                            <div class="col-lg-1 txt-bold-white pt-22">lp.</div>
+                            <div class="col-lg-2 txt-bold-white pl-0 pt-22">Nazwa</div>
+                            <div class="col-lg-2 txt-bold-white">Data rozpoczęcia</div>
+                            <div class="col-lg-1 txt-bold-white pt-22">Graczy</div>
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-2">
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="txt-bold-white col-12">Brak turniejów do wyświetlenia.</div>
+                        </div>
+                    {% endif %}
+                        {% for tournament in tournaments %}
+                                <li class="list-group-item list-background">
+                                    <div class="row">
+                                        <div class="col-lg-1">{{ forloop.counter }}.</div>
+                                        <div class="col-lg-2 font-weight-bold pl-0">{{ tournament.name }}</div>
+                                        <div class="col-lg-2">{{ tournament.start_date.date }}</div>
+                                        <div class="col-lg-1">{{ tournament.players.count }}/{{ tournament.max_players }}</div>
+                                        <div class="col-lg-2">
+                                            {% if title == 'Turnieje zaplanowane' %}
+                                                <a href="{% url 'start_tournament' tournament.id %}">
+                                                    <button class="btn start_btn" type="submit">
+                                                        <i class="fas fa-play mr-2"> </i>Start
+                                                    </button>
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'tournaments_detail' tournament.id %}">
+                                                <button class="btn start_btn" type="submit">
+                                                    <i class="mr-2"> </i>Zobacz
+                                                </button>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="{% url 'update_tournaments' tournament.id %}">
+                                                <button class="btn edit_btn" type="submit">
+                                                    <i class="fas fa-edit mr-2"> </i>Edytuj
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <form method="post" action="{% url 'delete_tournaments' tournament.id %}">
+                                                {% csrf_token %}
+                                                <button class="btn delete_btn" type="submit">
+                                                    <i class="fas fa-trash mr-2"> </i>Usuń
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                        {% endfor %}
+                        {% if tournaments.count > 0 %}
+                            <form class="filter-border mt-4" method="POST" action=
+                                    {% if title == 'Wszystkie turnieje' %}
+                                        {% url 'filtered_tournaments_list' value='all' %}
+                                    {% elif title == 'Wszystkie trawjące turnieje' %}
+                                        {% url 'filtered_all_tournaments_in_progress' %}
+                                    {% elif title == 'Turnieje zaplanowane' %}
+                                        {% url 'filtered_tournaments_list' value='planned' %}
+                                    {% elif title == 'Turnieje w trakcie' %}
+                                        {% url 'filtered_tournaments_list' value='in_progress' %}
+                                    {% else %}
+                                        {% url 'filtered_tournaments_list' value='finished' %}
+                                    {% endif %}
+                                   >
+                                {% csrf_token %}
+                                <div class="row mt-3">
+                                    <div class="col-lg-4 offset-lg-2">
+                                        <div class="input-group mb-3 input-date-min-width">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text font-weight-bold">Od</span>
+                                            </div>
+                                            <input type="date" name="date_from" class="form-control form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="input-group mb-3 input-date-min-width">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text font-weight-bold">Do</span>
+                                            </div>
+                                            <input type="date" name="date_to" class="form-control form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 offset-md-4">
+                                        <div class="d-flex justify-content-center mt-4 login_container">
+                                            <input class="btn filter_btn" type="submit" value="Szukaj">
+                                        </div>
+                                    </div>
+                                </div>
+                             </form>
+                        {% endif %}
+                     </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

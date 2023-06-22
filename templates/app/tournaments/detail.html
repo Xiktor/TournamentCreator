@@ -1,0 +1,141 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+{% load poll_extras %}
+
+<div class="mt-4">
+    <div class="container w-25 float-left max-w-250 mt-2">
+        <h4>Lista startowa</h4>
+        <ul class="list-group">
+            {% for player in tournament.players.all  %}
+                <li class="list-group-item list-background">{{ forloop.counter }}. {{ player.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="container w-75 float-left">
+        <div class="row">
+            <div class="col-sm-8"><h3 class="display-4">Turniej: <b>{{ tournament }}</b></h3></div>
+            <div class="col-sm-4">
+                Organizator: <b>{{ tournament.user }}</b><br>
+                Data rozpoczęcia <b>{{ tournament.start_date.date }}</b>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="container h-100">
+                <div class="row">
+                    {% for round in tournament.round_set.all  %}
+                        <div class="col border">
+                          <p class="round-title font-weight-bold">Runda {{ round.round_number }}</p>
+                        <div class="row">
+                            {% for x in rounds_status %}
+                                {% if x.round_number == round.round_number and not tournament.is_finished %}
+                                    {% if x.finished_table  == x.total_table and x.total_table != 0 and x.round_number != tournament.round_set.count%}
+                                        {% with next_e=tournament.round_set.all|next:forloop.counter0 %}
+                                            {% if next_e.arena_set.count == 0 %}
+                                                <a href="{% url 'generate_next_round' round.pk %}"
+                                                   class=" mr-auto ml-auto mb-2">
+                                                    <button class="btn login_btn" type="submit">
+                                                        Generuj następną rundę
+                                                    </button>
+                                                </a>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% elif x.round_number == tournament.round_set.count and x.finished_table  == x.total_table and x.total_table != 0%}
+                                        <a href="{% url 'finish_tournaments' tournament.pk %}"
+                                           class=" mr-auto ml-auto mb-2">
+                                            <button class="btn login_btn" type="submit">
+                                                Zakończ turniej
+                                            </button>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                            {% for arena in round.arena_set.all  %}
+                                {% if round.arena_set.count == 2 %}
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                {% endif %}
+                                {% if round.arena_set.count == 1 %}
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                {% endif %}
+                                <div class="row">
+                                        {% for x in arena.result_set.all  %}
+                                    <div class="border arena col-12">
+                                           {% if x.winner == arena.player1 %}
+                                               <div class="row winner border-bottom">
+                                                    <i class="fas fa-trophy mt-auto mb-auto"></i>
+                                                   <div class="mt-auto mb-auto ml-2">{{ arena.player1 }}</div>
+                                               </div>
+                                               <div class="row losser">
+                                                   <i class="fas fa-times mt-auto mb-auto"></i>
+                                                   <div class="mt-auto mb-auto ml-2">{{ arena.player2 }}</div>
+                                               </div>
+                                           {% elif x.winner == arena.player2 %}
+                                           <div class="row losser border-bottom">
+                                                <i class="fas fa-times mt-auto mb-auto"></i>
+                                               <div class="mt-auto mb-auto ml-2">{{ arena.player1 }}</div>
+                                           </div>
+                                           <div class="row winner">
+                                                <i class="fas fa-trophy mt-auto mb-auto"></i>
+                                               <div class="mt-auto mb-auto ml-2">{{ arena.player2 }}</div>
+                                           </div>
+                                           {% endif %}
+                                    </div>
+                                        {% endfor %}
+                                </div>
+                                {% if arena.result_set.count == 0 %}
+                                <div class="row">
+                                    <div class="border arena col-12">
+                                        <div class="row no_result border-bottom">
+                                            <div class="col-12">
+                                                {{ arena.player1 }}
+                                            </div>
+                                        </div>
+                                        <div class="row no_result">
+                                            <div class="col-9">
+                                                {{ arena.player2 }}
+                                            </div>
+                                            <div class="float-end col-3 p-0">
+                                                <a href="{% url 'enter_result' arena.pk %}">
+                                            <button class="btn result_btn" type="submit">
+                                                <i class="fas fa-edit mr-2"> </i>
+                                            </button>
+                                            </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if round.arena_set.count == 4 %}
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                {% endif %}
+                                {% if round.arena_set.count == 2 %}
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="empty-arena"> </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

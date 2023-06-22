@@ -1,0 +1,68 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="main-card mt-5">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title" class="mt-2">Edytuj turniej</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container mb-4">
+
+					<form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.name.label_tag }}
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-trophy"></i></span>
+                                </div>
+                                {{ form.name }}
+                            </div>
+                            {{ form.start_date.label_tag }}
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                </div>
+                                {{ form.start_date }}
+                            </div>
+                            {{ form.max_players.label_tag }}
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                </div>
+                                {{ form.max_players }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label>Przypisz graczy:</label>
+                            <ul class="list-group" id="player-list">
+                                {% for p in form.players  %}
+                                    <li class="list-group-item list-background">{{ p }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4 login_container">
+                        <input class="btn login_btn" type="submit" value="Dodaj turniej">
+                    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    	<script>
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Nazwa';
+		form_fields[3].placeholder='Max graczy';
+
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+
+{% endblock %}

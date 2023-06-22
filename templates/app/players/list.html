@@ -1,0 +1,50 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <div class=" container h-100" id="player_list_view">
+		<div class="d-flex justify-content-center h-100">
+			<div class="main-card mt-5">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title" class="mt-2">Lista graczy</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container mb-4">
+                    <ul class="container list-group m-4">
+                    {% if players.count > 0 %}
+                        <div class="row">
+                            <div class="col-sm-1 txt-bold-white pt-22">lp.</div>
+                            <div class="col-sm-2 txt-bold-white pl-0 pt-22">Nazwa</div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="txt-bold-white col-12">Brak Graczy wyświetlenia.</div>
+                        </div>
+                    {% endif %}
+                        {% for player in players %}
+                            <li class="list-group-item list-background">
+                                <div class="row">
+                                    <div class="col-sm-1">{{ forloop.counter }}.</div>
+                                    <div class="col-sm-2 font-weight-bold pl-0">{{ player.name }}</div>
+                                    <div class="col-sm-2 offset-sm-4">
+                                        <a href="{% url 'update_players' player.id %}">
+                                            <button class="btn edit_btn" type="submit">
+                                                <i class="fas fa-edit mr-2"> </i>Edytuj
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <form method="post" action="{% url 'delete_players' player.id %}">
+                                            {% csrf_token %}
+                                            <button class="btn delete_btn" type="submit">
+                                                <i class="fas fa-trash mr-2"> </i>Usuń
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                     </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

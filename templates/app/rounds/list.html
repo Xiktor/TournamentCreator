@@ -1,0 +1,27 @@
+{% extends 'app/scheleton.html' %}
+
+{% block content %}
+    <h3 class="display-4">rrr</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>tour</th>
+                <th>name</th>
+                <th>nr</th>
+                <th>test</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in rounds %}
+                <tr>
+                     <td>{{ r.id }}</td><br>
+                      <td>{{ r.tournament }}</td><br>
+                      <td>{{ r }} </td>
+                      <td>{{ r.round_number }} </td>
+                      <td>{{ r.arena_set.all }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
